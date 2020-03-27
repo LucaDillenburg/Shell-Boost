@@ -1,15 +1,29 @@
 #!/bin/bash
 
-. $(dirname "$0")/auxiliar.sh
+. $(dirname "$0")/*.sh
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
 INDEX_CURR_DIR=1
 FORWARD_LENGTH=0
 
-function go {
-	cd $1
+alias to='cd'
 
+function cd {
+	__single_cd $1
+}
+function __single_cd {
+	if [ ! -d $1 ]; then
+		1>&2 echo "cd: no such file or directory: $1"
+	elif [ ! -x $1 ]; then
+		1>&2 echo "cd: permission denied: $1"
+	else
+		builtin cd $1
+		__update_dir_history
+	fi	
+}
+
+function __update_dir_history {
 	INDEX_CURR_DIR=`expr $INDEX_CURR_DIR + 1`
 	DIRECTORIES_HISTORY[$INDEX_CURR_DIR]=$(pwd)
 
