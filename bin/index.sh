@@ -1,15 +1,19 @@
 #!/bin/bash
 
-. $(dirname "$0")/*.sh
+. $(dirname "$0")/utils.sh
+. $(dirname "$0")/commands_help.sh
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
 INDEX_CURR_DIR=1
 FORWARD_LENGTH=0
 
-alias to='cd'
-
 function cd {
+	if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
+		__echo_cd_help
+		return 0
+	fi
+
 	builtin cd $* 2> /tmp/Error
 	ret_cd=$?
 	_error=$(</tmp/Error) # The shell recognizes this and doesn't have to run 'cat' /tmp/ERROR to get the data.
@@ -28,34 +32,51 @@ function cd {
 }
 
 function back {
-	if [[ $(__check_args_length $*) == error ]] return 1
+	if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
+		__echo_back_help
+		return 0
+	fi
 
-	amnt_iterations=$(__get_amnt_iterations $*)
+	if [[ $# -gt 1 ]]; then 
+		__print_msg_too_many_args "back"
+		return 1
+	fi
+
+	amnt_iterations=$(__get_amnt_iterations "back" $1)
 	if [[ $amnt_iterations == error ]] return 2
 	
 	index_cur_after_all_iterations=`expr $INDEX_CURR_DIR - $amnt_iterations`
 	if [[ $index_cur_after_all_iterations -lt 1 ]]; then
-		__print_msg_no_directories "back"
+		__print_msg_no_directories "back" "backwards"
 		return
 	fi
 
 	INDEX_CURR_DIR=`expr $INDEX_CURR_DIR - $amnt_iterations`
 	FORWARD_LENGTH=`expr $FORWARD_LENGTH + $amnt_iterations`
 	__goto_virtually_curr_dir
+	return 0
 }
 
 function fwd {
-	if [[ $(__check_args_length $*) == error ]] return 1
+	if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
+		__echo_fwd_help
+		return 0
+	fi
+
+	if [[ $# -gt 1 ]]; then 
+		__print_msg_too_many_args "fwd"
+		echo error
+	fi
 
 	if [[ $1 == -a ]] || [[ $1 == --all ]]; then
 		amnt_iterations=$FORWARD_LENGTH
 	else
-		amnt_iterations=$(__get_amnt_iterations $*)
+		amnt_iterations=$(__get_amnt_iterations "fwd" $1)
 		if [[ $amnt_iterations == error ]] return 2
 	fi
 
 	if [[ $FORWARD_LENGTH -lt `expr $amnt_iterations` ]]; then
-		__print_msg_no_directories "forward"
+		__print_msg_no_directories "fwd" "forward"
 		return
 	fi
 
@@ -68,32 +89,34 @@ function __goto_virtually_curr_dir {
 	builtin cd $DIRECTORIES_HISTORY[$INDEX_CURR_DIR]
 }
 
-function __check_args_length {
-	if [[ $# -gt 1 ]]; then 
-		__print_msg_too_many_args
-		echo error
-	fi
-}
 function __get_amnt_iterations {
-	if [[ -z $1 ]]; then
+	arg=$2;cmd=$1
+	if [[ -z $arg ]]; then
 		echo 1
-	elif ! [[ $1 =~ '^[0-9]$' ]] || [[ $1 -eq 0 ]]; then
-		__print_msg_invalid_args
-		echo error
+	elif [[ $arg =~ '^-n=[0-9]*$' ]]; then
+		echo ${arg:3}
 	else
-		echo $1
+		__print_msg_invalid_args $cmd $arg
+		echo error
 	fi
 }
 
 function __print_msg_invalid_args {
-	__echo_error "Invalid arguments."
+	arg=$2;cmd=$1
+	if [[ $(__is_option $arg) == true ]]; then
+		arg_type=option
+	else
+		arg_type=argument
+	fi
+	__echo_error "$cmd: invalid $arg_type $arg"
 }
 function __print_msg_too_many_args {
-	__echo_error "Too many arguments."
+	__echo_error "$1: too many arguments"
 }
 function __print_msg_no_directories {
-	__echo_error "No more directories "$1"."
+	__echo_error "$1: Cannot go $2. No more directories in this direction.$(__echo_smile)"
 }
-function __echo_error {
-	1>&2 echo -e $*"    \e]8;;https://github.com/dillenburg/SuperShellNavigation\e\\¯\_(ツ)_/¯\e]8;;\e\\"
+
+function __echo_smile {
+	echo -e "  \e]8;;https://github.com/dillenburg/BetterShellNavigation\e\\¯\_(ツ)_/¯\e]8;;\e\\"
 }
