@@ -10,22 +10,22 @@ FORWARD_LENGTH=0
 alias to='cd'
 
 function cd {
-	if [ ! -d $1 ]; then
-		__echo_error "cd: no such file or directory: $1"
-		return $?
-	elif [ ! -x $1 ]; then
-		__echo_error "cd: permission denied: $1"
-		return $?
+	builtin cd $* 2> /tmp/Error
+	_error=$(</tmp/Error) # The shell recognizes this and doesn't have to run 'cat' /tmp/ERROR to get the data.
+	# ret_cd=$?
+
+	if [[ -z $_error ]]; then
+		if ! [[ $(pwd) == $DIRECTORIES_HISTORY[$INDEX_CURR_DIR] ]]; then
+			INDEX_CURR_DIR=`expr $INDEX_CURR_DIR + 1`
+			DIRECTORIES_HISTORY[$INDEX_CURR_DIR]=$(pwd)
+
+			FORWARD_LENGTH=0
+		fi
 	else
-		builtin cd $*
-		
-		INDEX_CURR_DIR=`expr $INDEX_CURR_DIR + 1`
-		DIRECTORIES_HISTORY[$INDEX_CURR_DIR]=$(pwd)
-
-		FORWARD_LENGTH=0
-
-		return 0
-	fi	
+		__echo_error $_error
+		#__echo_error ${error:9}
+	fi
+	# return $ret_cd
 }
 
 function back {
@@ -96,5 +96,5 @@ function __print_msg_no_directories {
 	__echo_error "No more directories "$1"."
 }
 function __echo_error {
-	1>&2 echo $*
+	1>&2 echo -e $*"\033[1m ¯\_(ツ)_/¯ \033[0m"
 }
