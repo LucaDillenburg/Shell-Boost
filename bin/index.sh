@@ -48,12 +48,12 @@ function back {
 	index_cur_after_all_iterations=`expr $INDEX_CURR_DIR - $amnt_iterations`
 	if [[ $index_cur_after_all_iterations -lt 1 ]]; then
 		__print_msg_no_directories "back" "backwards"
-		return
+		return 3
 	fi
 
 	INDEX_CURR_DIR=`expr $INDEX_CURR_DIR - $amnt_iterations`
 	FORWARD_LENGTH=`expr $FORWARD_LENGTH + $amnt_iterations`
-	__goto_virtually_curr_dir
+	__goto_virtually_curr_dir "back" $amnt_iterations
 	return 0
 }
 
@@ -65,7 +65,7 @@ function fwd {
 
 	if [[ $# -gt 1 ]]; then 
 		__print_msg_too_many_args "fwd"
-		echo error
+		return 1
 	fi
 
 	if [[ $1 == -a ]] || [[ $1 == --all ]]; then
@@ -77,16 +77,23 @@ function fwd {
 
 	if [[ $FORWARD_LENGTH -lt `expr $amnt_iterations` ]]; then
 		__print_msg_no_directories "fwd" "forward"
-		return
+		return 3
 	fi
 
 	INDEX_CURR_DIR=`expr $INDEX_CURR_DIR + $amnt_iterations`
 	FORWARD_LENGTH=`expr $FORWARD_LENGTH - $amnt_iterations`
-	__goto_virtually_curr_dir
+	__goto_virtually_curr_dir "fwd" $amnt_iterations
+	return 0
 }
 
 function __goto_virtually_curr_dir {
-	builtin cd $DIRECTORIES_HISTORY[$INDEX_CURR_DIR]
+	cmd=$1;amnt_iterations=$2
+	builtin cd $DIRECTORIES_HISTORY[$INDEX_CURR_DIR] 2> /tmp/Error
+	_error=$(</tmp/Error) # The shell recognizes this and doesn't have to run 'cat' /tmp/ERROR to get the data.
+	if ! [[ -z $_error ]]; then
+		__echo_error "$cmd: "${_error:32}
+		__echo_error "$(__bold "Suggestion"): run $(__bold "$cmd -n=`expr $amnt_iterations + 1`")"
+	fi
 }
 
 function __get_amnt_iterations {
