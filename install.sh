@@ -6,8 +6,9 @@ relatve_dir=$(dirname $0)
 if [[ $relatve_dir == "." ]]; then
 	relatve_dir=""
 fi
-source=$(echo "$(pwd)$relatve_dir")
-source_command=";source \"$source/bin/index.sh\"; # ShellNavigationBoost installation"
+SH_NAV_HOME=$(echo "$(pwd)$relatve_dir")
+set_env_var=";SH_NAV_HOME=$SH_NAV_HOME;"
+source_command=";source \"\$SH_NAV_HOME/bin/index.sh\";"
 
 search_prefix="$USER:/usr/bin/" 2> /dev/null
 prefix_length=${#search_prefix} 2> /dev/null
@@ -20,21 +21,27 @@ init_shell_files=("$HOME/.bashrc" "$HOME/.zshrc")
 for ((i=0; $i<${#shells[@]}; i=`expr $i + 1`)); do
 	init_shell_file=${init_shell_files[$i]}
 	if [ -e $init_shell_file ]; then
+		echo "# ShellNavigationBoost installation (do not delete the following lines)" >> "$init_shell_file" 2> /tmp/Error
+		_error=$(</tmp/Error)
+
+    	echo "$set_env_var" >> "$init_shell_file" 2> /tmp/Error
+		_error="$_error$(</tmp/Error)"
+
     	echo "$source_command" >> "$init_shell_file" 2> /tmp/Error
-		_error=$(</tmp/Error) # The shell recognizes this and doesn't have to run 'cat' /tmp/ERROR to get the data.
+		_error="$_error$(</tmp/Error)"
 
 		if ! [[ -z $_error ]]; then
-			1>&2 echo "Error while appending commands to $init_shell_file:"
+			1>&2 echo "\033[0;31m[ERROR] Error while appending commands to $init_shell_file:\033[0m"
 			1>&2 echo "    $_error"
 		else
 			cur_shell=${shells[$i]}
-			echo "Successfully installed in $cur_shell (appended to $init_shell_file)"
+			echo "[INFO] Successfully installed in $cur_shell (appended to $init_shell_file)"
 			if [[ $default_shell == $cur_shell ]]; then
 				installed_in_default_shell=true
 			fi
 		fi
 	else
-		echo "Couldn't find file: $init_shell_file"
+		echo "[INFO] Couldn't find file: $init_shell_file. "
 	fi
 done
 

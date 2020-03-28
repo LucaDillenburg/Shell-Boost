@@ -1,8 +1,13 @@
 #!/bin/bash
 
-. $(dirname "$0")/utils.sh
-. $(dirname "$0")/commands_help.sh
-. $(dirname "$0")/extra.sh
+function __get_project_path {
+	echo $SH_NAV_HOME
+}
+
+. $(__get_project_path)/bin/utils.sh
+. $(__get_project_path)/bin/extra.sh
+
+__check_new_version_git
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
@@ -126,5 +131,5 @@ function __print_msg_no_directories {
 }
 
 function __echo_smile {
-	echo -e "  \e]8;;https://github.com/dillenburg/BetterShellNavigation\e\\¯\_(ツ)_/¯\e]8;;\e\\"
+	echo -e "  \e]8;;$(__get_repo_url)\e\\¯\_(ツ)_/¯\e]8;;\e\\"
 }

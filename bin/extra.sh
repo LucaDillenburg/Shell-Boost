@@ -1,5 +1,3 @@
-# other 
-
 alias c='clear;'
 alias ..='cd ..;'
 
@@ -17,4 +15,4 @@ function mkcd {
 			cd $1
 		fi
 	fi
-}
+} 
