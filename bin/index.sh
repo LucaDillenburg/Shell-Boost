@@ -11,8 +11,8 @@ alias to='cd'
 
 function cd {
 	builtin cd $* 2> /tmp/Error
+	ret_cd=$?
 	_error=$(</tmp/Error) # The shell recognizes this and doesn't have to run 'cat' /tmp/ERROR to get the data.
-	# ret_cd=$?
 
 	if [[ -z $_error ]]; then
 		if ! [[ $(pwd) == $DIRECTORIES_HISTORY[$INDEX_CURR_DIR] ]]; then
@@ -22,10 +22,9 @@ function cd {
 			FORWARD_LENGTH=0
 		fi
 	else
-		__echo_error $_error
-		#__echo_error ${error:9}
+		__echo_error "cd: "${_error:9}
 	fi
-	# return $ret_cd
+	return $ret_cd
 }
 
 function back {
@@ -96,5 +95,5 @@ function __print_msg_no_directories {
 	__echo_error "No more directories "$1"."
 }
 function __echo_error {
-	1>&2 echo -e $*"\033[1m ¯\_(ツ)_/¯ \033[0m"
+	1>&2 echo -e $*"    \e]8;;https://github.com/dillenburg/SuperShellNavigation\e\\¯\_(ツ)_/¯\e]8;;\e\\"
 }
