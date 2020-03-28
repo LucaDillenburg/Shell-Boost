@@ -24,6 +24,13 @@ function __echo_fwd_help {
 	__echo_repo
 }
 
+function __echo_mkcd_help {
+	echo -e "Usage: mkcd DIRECTORY."
+	echo -e "Create directory and navigate to it."	
+    echo -e "	-h, --help 	display this help"
+	__echo_repo
+}
+
 function __echo_repo {
 	repo_url="https://github.com/dillenburg/BetterShellNavigation"
 	echo "Please, don't forget to check out our repo at $(__link $repo_url $repo_url)"

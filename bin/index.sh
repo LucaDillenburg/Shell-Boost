@@ -2,6 +2,7 @@
 
 . $(dirname "$0")/utils.sh
 . $(dirname "$0")/commands_help.sh
+. $(dirname "$0")/extra.sh
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
