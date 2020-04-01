@@ -16,3 +16,5 @@ function mkcd {
 		fi
 	fi
 } 
+
+alias test_output='echo "it worked my dear lord"'
