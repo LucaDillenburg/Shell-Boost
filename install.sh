@@ -1,15 +1,22 @@
 #!/bin/bash
 
-# import utils
-relative_dir=$(dirname $0)
-if [[ $relative_dir == "." ]]; then
-	relative_dir=""
-fi
-SH_NAV_HOME=$(echo "$(pwd)/$relative_dir")
+SH_NAV_HOME=""
+function __set_sh_nav_home {
+	SH_NAV_HOME=$(pwd)
+	relative_dir=$(dirname $0)
+	beginning="${relative_dir:0:2}"
+	if [[ $beginning == "./" ]]; then
+		relative_dir=${relative_dir:2}
+	fi
+	if ! [[ $relative_dir == "." ]]; then
+		SH_NAV_HOME="$SH_NAV_HOME/$relative_dir"
+	fi
+}
+__set_sh_nav_home
 
 echo "Shell Navigation Home: $SH_NAV_HOME"
 
-. $SH_NAV_HOME/bin/utils.sh
+source $SH_NAV_HOME/bin/utils.sh
 
 #################################################
 # functions
@@ -71,6 +78,7 @@ function __install_to_shell {
 #################################################
 
 chmod +x bin/index.sh
+chmod +x update.sh
 
 default_shell=$(__get_default_shell)
 
@@ -101,5 +109,6 @@ if [[ $installed_in_default_shell == true ]]; then
 else
 	echo -e "\033[1m[Attention!!] Unsuccessful instalation!\033[0m"
 	echo -e "\033[1mPlease add the following lines to the ~/.bashrc equivalent file.\033[0m"
-
 fi
+
+__update_content_last_update_file

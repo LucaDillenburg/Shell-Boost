@@ -1,9 +1,10 @@
 #!/bin/bash
 
-. $SH_NAV_HOME/bin/utils.sh
-. $SH_NAV_HOME/bin/extra.sh
+source $SH_NAV_HOME/bin/utils.sh
+source $SH_NAV_HOME/bin/extra.sh
+source $SH_NAV_HOME/bin/commands_help.sh
 
-__git_pull
+__git_pull_if_needed
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
