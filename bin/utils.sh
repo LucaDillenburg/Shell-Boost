@@ -1,6 +1,10 @@
 #!/bin/bash
 
-function __check_new_version_git {
+function __get_project_path {
+	echo $SH_NAV_HOME
+}
+
+function __git_pull {
 	initial_directory=$(pwd)
 
 	builtin cd $(__get_project_path) 2> /tmp/Error
@@ -18,8 +22,7 @@ function __check_new_version_git {
 				__echo_error "Failed to update Shell Navigation Boost. You can do this by removing this folder and cloning again at $(__echo_repo_link) into the same path."
 				__echo_error "Project home folder: $(__get_project_path)"
 				# git pull conflict (permanent) - this should never happen
-			else
-				# no internet connection or other issues (not permanent)
+			#else => no internet connection or other issues (not permanent)
 			fi
 		else
 			if ! [[ -z $($response | grep "Updating") ]]; then

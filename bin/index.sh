@@ -1,13 +1,9 @@
 #!/bin/bash
 
-function __get_project_path {
-	echo $SH_NAV_HOME
-}
+. $SH_NAV_HOME/bin/utils.sh
+. $SH_NAV_HOME/bin/extra.sh
 
-. $(__get_project_path)/bin/utils.sh
-. $(__get_project_path)/bin/extra.sh
-
-__check_new_version_git
+__git_pull
 
 # first index of the array is 1
 DIRECTORIES_HISTORY=($(pwd))
