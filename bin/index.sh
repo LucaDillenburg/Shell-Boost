@@ -3,6 +3,8 @@
 source $SH_NAV_HOME/bin/utils.sh
 source $SH_NAV_HOME/bin/extra.sh
 source $SH_NAV_HOME/bin/commands_help.sh
+source $SH_NAV_HOME/bin/custom_aliases.sh
+source $SH_NAV_HOME/bin/create_custom_cd_aliases.sh
 
 __git_pull_if_needed
 
