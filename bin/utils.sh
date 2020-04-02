@@ -1,11 +1,7 @@
 #!/bin/bash
 
-function __get_project_path {
-	echo $SH_NAV_HOME
-}
-
 initial_directory=$(pwd)
-builtin cd $(__get_project_path) 2> /tmp/Error
+builtin cd $SH_NAV_HOME 2> /tmp/Error
 _error=$(</tmp/Error)
 if ! [[ -z $_error ]]; then
 	__echo_error "Shell Navigation Boost directory have changed. Please update \$SH_NAV_HOME ~/.bashrc or the equivalent."
@@ -48,7 +44,7 @@ function __git_pull {
 	initial_directory=$(pwd)
 	ret_code=0
 
-	builtin cd $(__get_project_path) 2> /tmp/Error
+	builtin cd $SH_NAV_HOME 2> /tmp/Error
 	response=$(git pull origin master 2> /tmp/Error)
 	_error=$(</tmp/Error)
 
@@ -57,7 +53,7 @@ function __git_pull {
 		__echo_error "Failed to update Shell Navigation Boost. You can do this by removing this folder and cloning again at $(__echo_repo_link) into the same path."
 		__echo_error $(__red "Error: ")
 		__echo_error "    $_error"
-		__echo_error "Project home folder: $(__get_project_path)"
+		__echo_error "Project home folder: $SH_NAV_HOME"
 		# git pull conflict (permanent) - this should never happen
 		ret_code=1
 	elif ! [[ -z $(grep "Updating" <<< $response) ]]; then

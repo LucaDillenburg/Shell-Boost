@@ -106,6 +106,7 @@ done
 
 if [[ $installed_in_default_shell == true ]]; then
 	echo -e "\033[1mSuccessfully installed\033[0m"
+	source $SH_NAV_HOME/bin/index.sh 
 else
 	echo -e "\033[1m[Attention!!] Unsuccessful instalation!\033[0m"
 	echo -e "\033[1mPlease add the following lines to the ~/.bashrc equivalent file.\033[0m"
