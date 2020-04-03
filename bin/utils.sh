@@ -9,6 +9,18 @@ if ! [[ -z $_error ]]; then
 fi
 cd $initial_directory
 
+function __get_data_folder {
+	echo "$HOME/.sh_nav_boost_data"
+}
+
+if ! [[ -d $(__get_data_folder) ]]; then
+	mkdir $(__get_data_folder)
+fi
+
+########################################################
+# functions
+########################################################
+
 function __git_pull_if_needed {
 	last_update=$(__get_last_update_date)
 
@@ -25,19 +37,14 @@ function __get_last_update_date {
 	echo $(cat $(__get_file_last_update))
 }
 function __update_content_last_update_file {
-	folder_last_update=$(__get_folder_last_update)
 	file_last_update=$(__get_file_last_update)
 	if ! [[ -f "$file_last_update" ]]; then
-		mkdir $folder_last_update
 		touch $file_last_update
 	fi
 	echo $(__today) > $file_last_update
 }
-function __get_folder_last_update {
-	echo "$HOME/.cache/sh_nav_boost"
-}
 function __get_file_last_update {
-	echo "$(__get_folder_last_update)/.last_update"
+	echo "$(__get_data_folder)/.last_update"
 }
 
 function __git_pull {
@@ -67,6 +74,32 @@ function __git_pull {
 
 	cd $initial_directory
 	return $ret_code
+}
+
+
+
+function __get_absolute_path {
+	nonnormalized_path=""
+	if [[ $1 =~ "^/" ]]; then
+		nonnormalized_path=$1
+	elif [[ $1 == "~" ]]; then
+		nonnormalized_path="$HOME"
+	elif [[ $1 =~ "^~/" ]]; then
+		nonnormalized_path="$HOME/${1:2}"
+	else
+		nonnormalized_path=$(__relative_to_absolute_path $1)
+	fi
+
+	if [[ "${nonnormalized_path: -1}" == "/" ]]; then
+		length=${#str}
+		echo ${nonnormalized_path:0:`expr $length - 1`}
+	else
+		echo $nonnormalized_path
+	fi
+}
+function __relative_to_absolute_path {
+	echo "$(pwd)/$1"
+	# $1 can be "./folder", "../folder", ".",... that it will still work
 }
 
 function __get_repo_url {
