@@ -1,5 +1,4 @@
-alias c='clear;'
-alias ..='cd ..;'
+#!/bin/bash
 
 function mkcd {
 	if [[ $1 == "--help" || $1 == "-h" ]]; then

@@ -16,7 +16,7 @@ __set_sh_nav_home
 
 echo "Shell Navigation Home: $SH_NAV_HOME"
 
-source $SH_NAV_HOME/bin/utils.sh
+source $SH_NAV_HOME/bin/utils/index.sh
 
 #################################################
 # functions
