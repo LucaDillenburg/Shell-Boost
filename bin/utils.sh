@@ -30,11 +30,17 @@ function __git_pull_if_needed {
 
 	if [[ $days_between -gt 7 ]]; then
 		__git_pull
-		__update_content_last_update_file 
+		__update_content_last_update_file
 	fi
 }
 function __get_last_update_date {
-	echo $(cat $(__get_file_last_update))
+	if ! [[ -f $(__get_file_last_update) ]]; then
+		touch $(__get_file_last_update)
+		echo $(__today) > $(__get_file_last_update)
+		echo $(__today)
+	else
+		echo $(cat $(__get_file_last_update))
+	fi
 }
 function __update_content_last_update_file {
 	file_last_update=$(__get_file_last_update)

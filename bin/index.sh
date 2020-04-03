@@ -47,7 +47,9 @@ function back {
 	fi
 
 	amnt_iterations=$(__get_amnt_iterations "back" $1)
-	if [[ $amnt_iterations == error ]] return 2
+	if [[ $amnt_iterations == error ]]; then
+		return 2
+	fi
 	
 	index_cur_after_all_iterations=`expr $INDEX_CURR_DIR - $amnt_iterations`
 	if [[ $index_cur_after_all_iterations -lt 1 ]]; then
@@ -76,7 +78,9 @@ function fwd {
 		amnt_iterations=$FORWARD_LENGTH
 	else
 		amnt_iterations=$(__get_amnt_iterations "fwd" $1)
-		if [[ $amnt_iterations == error ]] return 2
+		if [[ $amnt_iterations == error ]]; then
+			return 2
+		fi
 	fi
 
 	if [[ $FORWARD_LENGTH -lt `expr $amnt_iterations` ]]; then
