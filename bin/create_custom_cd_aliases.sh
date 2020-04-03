@@ -23,7 +23,7 @@ function create_custom_cd_aliases {
 		fi
 	fi
 
-	echo "You can press Ctrl+C (or Command+. for macOS) when you don't want to create more aliases."
+	echo "You can press Ctrl+C when you don't want to create more aliases."
 	echo ""
 
 	while true
@@ -48,7 +48,7 @@ function create_custom_cd_aliases {
 			printf "Enter alias (keep it short): "
 			read -r _alias
 
-			if ! [[ $_alias =~ '^[_a-zA-Z][_a-zA-Z0-9\-]*$' ]]; then
+			if [[ -z $(grep '^[_a-zA-Z][_a-zA-Z0-9\-]*$' <<< $_alias) ]]; then
 				__echo_error "Invalid alias. Alias name rules:"
 				__echo_error "1. It has to start with a letter or underline."
 				__echo_error "2. It can only have letters, numbers, underlines and hyphens."
@@ -70,6 +70,5 @@ function create_custom_cd_aliases {
 		fi
 	done
 
-	echo "Have a nice day :D "
-	source $(__get_file_path_custom_aliases)
+	echo "Have a nice day :D"
 }

@@ -30,11 +30,17 @@ function __git_pull_if_needed {
 
 	if [[ $days_between -gt 7 ]]; then
 		__git_pull
-		__update_content_last_update_file 
+		__update_content_last_update_file
 	fi
 }
 function __get_last_update_date {
-	echo $(cat $(__get_file_last_update))
+	if ! [[ -f $(__get_file_last_update) ]]; then
+		touch $(__get_file_last_update)
+		echo $(__today) > $(__get_file_last_update)
+		echo $(__today)
+	else
+		echo $(cat $(__get_file_last_update))
+	fi
 }
 function __update_content_last_update_file {
 	file_last_update=$(__get_file_last_update)
@@ -65,6 +71,7 @@ function __git_pull {
 		ret_code=1
 	elif ! [[ -z $(grep "Updating" <<< $response) ]]; then
 		echo "Shell Navigation Boost was updated. Please, feel free to contribute at $(__echo_repo_link)."
+		echo $(__bold "Please open a new terminal to access the new commands.")
 	else
 		if [[ $1 == "--verbose" ]]; then
 			echo "Nothing to be updated. Shell Navigation Boost is already in its most stable version."
@@ -80,11 +87,11 @@ function __git_pull {
 
 function __get_absolute_path {
 	nonnormalized_path=""
-	if [[ $1 =~ "^/" ]]; then
+	if ! [[ -z $(grep '^/' <<< $1) ]]; then
 		nonnormalized_path=$1
 	elif [[ $1 == "~" ]]; then
 		nonnormalized_path="$HOME"
-	elif [[ $1 =~ "^~/" ]]; then
+	elif ! [[ -z $(grep '^~/' <<< $1) ]]; then
 		nonnormalized_path="$HOME/${1:2}"
 	else
 		nonnormalized_path=$(__relative_to_absolute_path $1)

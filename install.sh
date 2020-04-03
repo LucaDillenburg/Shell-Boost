@@ -37,7 +37,7 @@ function __write_to_file {
 	_error=""
 	first=true
 	for line in $*; do
-		if [[ first==true ]]; then
+		if [[ first == true ]]; then
 			__echo_error "Line: $line --- to file: $file"
 			
 		fi
@@ -107,9 +107,15 @@ done
 if [[ $installed_in_default_shell == true ]]; then
 	echo -e "\033[1mSuccessfully installed\033[0m"
 	source $SH_NAV_HOME/bin/index.sh 
+
+	printf "Do you want to setup custom aliases? [Y/n]"
+	read -r response
+	if ! [[ $response == "n" || $response == "N" ]]; then
+		create_custom_cd_aliases
+	fi
+
+	echo $(__bold "Please open a new terminal to access the new commands.")
 else
 	echo -e "\033[1m[Attention!!] Unsuccessful instalation!\033[0m"
 	echo -e "\033[1mPlease add the following lines to the ~/.bashrc equivalent file.\033[0m"
 fi
-
-__update_content_last_update_file
