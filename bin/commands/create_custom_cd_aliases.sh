@@ -14,6 +14,11 @@ fi
 source $(__get_file_path_custom_aliases)
 
 function create_custom_cd_aliases {
+	if [[ $1 == "--help" ]]; then
+		__echo_create_cd_alias
+		return 0
+	fi
+
 	if ! [[ -z $(grep alias $(__get_file_path_custom_aliases)) ]]; then
 		printf "Do you want to overwrite the commands already created by this command? (if you choose NO the aliases will be appended) [y/N] "
 		read -r response
