@@ -50,6 +50,14 @@ function __git_pull {
 		ret_code=1
 	elif ! [[ -z $(grep "Updating" <<< $response) ]]; then
 		echo "Shell Navigation Boost was updated. Please, feel free to contribute at $(__echo_repo_link)."
+
+		echo " "
+		__updated_commands_resume
+
+		echo " "
+		__ask_show_all_commands
+
+		echo " "
 		echo $(__bold "Please open a new terminal to access the new commands.")
 	else
 		if [[ $1 == "--verbose" ]]; then
