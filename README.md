@@ -4,15 +4,23 @@ Light-weight tool to improve your shell navigation experience.
 Jump to: [installation](#installation) or [contributions](#contributions) (**every contribution is welcome! 😄**)
 <br/>
 
-## ```...``` Commands
+# ```...``` Commands
 
 | Command  | Explanation | Usage | Options and arguments |
 | ------------- | ------------- | ------------- | ------------- |
+
 | `back`  | Navigate backwards in the directory history | `back [OPTION]` | <html><ul><li>-n=NUMBER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigate NUMBER times backwards</li> <li>-h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command description</li></html> |
 | `fwd`  | Navigate forward in the directory history | `fwd [OPTION]` | <html><ul><li>-n=NUMBER&nbsp;&nbsp;&nbsp;&nbsp;navigate NUMBER times forward</li> <li>-a, --all&nbsp;&nbsp;&nbsp;&nbsp;navigate forward until the last directory in the history</li><li>-h, --help&nbsp;&nbsp;&nbsp;&nbsp;command description</li></html> |
 | `mkcd` | Create folder and navigate to it | `mkcd DIRECTORY` | - |
 | `c` | Clear shell (alias for `clear`) | `c` | - |
 | `..` | Navigate to the parent folder (alias for `cd ..`) | `..` | - |
+
+| `untar` | Untar compressed file with tar  | `untar [FILE]...` | - |
+
+| `gac` | Stage all files to git and commit with the message writen after this command | `gac [COMMIT MESSAGE]` | - |
+| `gst` | Display git status  | `gst` | - |
+| `glg` | Display git log  | `glg` | - |
+| `gpm` | Git push master  | `gpm` | - |
 
 ## Examples
 - ```back``` and ```fwd```
@@ -26,7 +34,11 @@ Jump to: [installation](#installation) or [contributions](#contributions) (**eve
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/Downloads/code-example/ $ ```...```
 <br/><br/>
 
-## 💻 <a name="installation"></a>Installation
+## Other features
+- Create custom cd aliases interactively
+After installation, you will be prompt to create custom cd aliases. Just copy the path of the directories that you access the most and choose a simple alias for them.
+
+# 💻 <a name="installation"></a>Installation
 - For bash (default shell) and zsh
 ```sh
 cd $HOME
@@ -42,7 +54,7 @@ source $SH_NAV_HOME/bin/index.sh
 ```
 <br/>
 
-## ❓ FAQ
+# ❓ FAQ
 - **Will these commands be available to non-interactive shells?**
 
   It won't be available by default. However, but you can add ```source $SH_NAV_HOME/bin/index.sh``` to your file to do it.
@@ -57,6 +69,8 @@ source $SH_NAV_HOME/bin/index.sh
 
 #### Quick contribution guide
 - New aliases and small functions should be appended to ```bin/extra.sh```
-- Don't forget to update the README with the new aliases or functions
+- After adding new aliases or functions, don't forget to update:
+  - README
+  - functions __all_commands_resume and __updated_commands_resume in ```bin/resume.sh```
 - Backward compatibility is a must
 - [Quick Git Flow explanation](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f)
