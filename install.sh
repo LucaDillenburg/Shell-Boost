@@ -17,6 +17,7 @@ __set_sh_nav_home
 echo "Shell Navigation Home: $SH_NAV_HOME"
 
 source $SH_NAV_HOME/bin/utils/index.sh
+source $SH_NAV_HOME/bin/resume.sh
 
 #################################################
 # functions
@@ -108,11 +109,14 @@ if [[ $installed_in_default_shell == true ]]; then
 	echo -e "\033[1mSuccessfully installed\033[0m"
 	source $SH_NAV_HOME/bin/index.sh 
 
-	printf "Do you want to setup custom aliases? [Y/n]"
+	printf "Do you want to setup custom aliases? [Y/n] "
 	read -r response
 	if ! [[ $response == "n" || $response == "N" ]]; then
 		create_custom_cd_aliases
 	fi
+
+	echo " "
+	__ask_show_all_commands
 
 	echo $(__bold "Please open a new terminal to access the new commands.")
 else
