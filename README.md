@@ -6,18 +6,27 @@ Jump to: [installation](#installation) or [contributions](#contributions) (**eve
 
 # ```...``` Commands
 
+### Navigation
 | Command  | Explanation | Usage | Options and arguments |
 | ------------- | ------------- | ------------- | ------------- |
 | `back`  | Navigate backwards in the directory history | `back [OPTION]` | <html><ul><li>-n=NUMBER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigate NUMBER times backwards</li> <li>-h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command description</li></html> |
 | `fwd`  | Navigate forward in the directory history | `fwd [OPTION]` | <html><ul><li>-n=NUMBER&nbsp;&nbsp;&nbsp;&nbsp;navigate NUMBER times forward</li> <li>-a, --all&nbsp;&nbsp;&nbsp;&nbsp;navigate forward until the last directory in the history</li><li>-h, --help&nbsp;&nbsp;&nbsp;&nbsp;command description</li></html> |
-| `mkcd` | Create folder and navigate to it | `mkcd DIRECTORY` | - |
 | `c` | Clear shell (alias for `clear`) | `c` | - |
 | `..` | Navigate to the parent folder (alias for `cd ..`) | `..` | - |
-| `untar` | Untar compressed file with tar  | `untar [FILE]...` | - |
-| `gac` | Stage all files to git and commit with the message writen after this command | `gac [COMMIT MESSAGE]` | - |
-| `gst` | Display git status  | `gst` | - |
-| `glg` | Display git log  | `glg` | - |
-| `gpm` | Git push master  | `gpm` | - |
+
+### General Linux
+| Command  | Explanation | Usage |
+| ------------- | ------------- | ------------- |
+| `mkcd` | Create folder and navigate to it | `mkcd DIRECTORY` |
+| `untar` | Untar compressed file with tar  | `untar [FILE]...` |
+
+### Git
+| Command  | Explanation | Usage |
+| ------------- | ------------- | ------------- |
+| `gac` | Stage all files to git and commit with the message writen after this command | `gac [COMMIT-MESSAGE]` |
+| `gst` | Display git status  | `gst` |
+| `glg` | Display git log  | `glg` |
+| `gpm` | Git push master  | `gpm` |
 
 ## Examples
 - ```back``` and ```fwd```
