@@ -1,5 +1,5 @@
-# Shell Navigation Boost &nbsp;&nbsp; [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-Light-weight tool to improve your shell navigation experience.
+# Shell Boost &nbsp;&nbsp; [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+Light-weight tool to improve your shell experience.
 
 Jump to: [installation](#installation) or [contributions](#contributions) (**every contribution is welcome! 😄**)
 <br/>
@@ -53,22 +53,22 @@ After installation, you will be prompt to create custom cd aliases. Just copy th
 - For bash (default shell) and zsh
 ```sh
 cd $HOME
-git clone https://github.com/LucaDillenburg/Shell-Navigation-Boost.git ".shell-navigation-boost"
-cd .shell-navigation-boost
+git clone https://github.com/LucaDillenburg/Shell-Boost.git ".shell-boost"
+cd .shell-boost
 chmod +x install.sh
 ./install.sh
 ```
 - For other shells: add this to your the correspondent ~/.bashrc file:
 ```sh
-SH_NAV_HOME="insert/path/to/cloned/repository" # [Atention!] do not delete this variable
-source $SH_NAV_HOME/bin/index.sh
+SH_BOOST_HOME="insert/path/to/cloned/repository" # [Atention!] do not delete this variable
+source $SH_BOOST_HOME/bin/index.sh
 ```
 <br/>
 
 # ❓ FAQ
 - **Will these commands be available to non-interactive shells?**
 
-  It won't be available by default. However, but you can add ```source $SH_NAV_HOME/bin/index.sh``` to your file to do it.
+  It won't be available by default. However, but you can add ```source $SH_BOOST_HOME/bin/index.sh``` to your file to do it.
 
 - **How can I stay always with the latest stable version installed?**
 

@@ -1,23 +1,23 @@
 #!/bin/bash
 
-SH_NAV_HOME=""
-function __set_sh_nav_home {
-	SH_NAV_HOME=$(pwd)
+SH_BOOST_HOME=""
+function __set_sh_boost_home {
+	SH_BOOST_HOME=$(pwd)
 	relative_dir=$(dirname $0)
 	beginning="${relative_dir:0:2}"
 	if [[ $beginning == "./" ]]; then
 		relative_dir=${relative_dir:2}
 	fi
 	if ! [[ $relative_dir == "." ]]; then
-		SH_NAV_HOME="$SH_NAV_HOME/$relative_dir"
+		SH_BOOST_HOME="$SH_BOOST_HOME/$relative_dir"
 	fi
 }
-__set_sh_nav_home
+__set_sh_boost_home
 
-echo "Shell Navigation Home: $SH_NAV_HOME"
+echo "Shell Boost Home: $SH_BOOST_HOME"
 
-source $SH_NAV_HOME/bin/utils/index.sh
-source $SH_NAV_HOME/bin/resume.sh
+source $SH_BOOST_HOME/bin/utils/index.sh
+source $SH_BOOST_HOME/bin/resume.sh
 
 #################################################
 # functions
@@ -52,8 +52,8 @@ function __install_to_shell {
 
 	line1=" "
 	line2="# ShellNavigationBoost installation (do not delete the following lines)"
-	line3="SH_NAV_HOME=$SH_NAV_HOME"
-	line4="source \"\$SH_NAV_HOME/bin/index.sh\""
+	line3="SH_BOOST_HOME=$SH_BOOST_HOME"
+	line4="source \"\$SH_BOOST_HOME/bin/index.sh\""
 	line5=" "
 
 	if ! [[ -z $shell_file ]]; then
@@ -107,7 +107,7 @@ done
 
 if [[ $installed_in_default_shell == true ]]; then
 	echo -e "\033[1mSuccessfully installed\033[0m"
-	source $SH_NAV_HOME/bin/index.sh 
+	source $SH_BOOST_HOME/bin/index.sh 
 
 	printf "Do you want to setup custom aliases? [Y/n] "
 	read -r response
