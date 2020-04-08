@@ -74,9 +74,6 @@ source $SH_NAV_HOME/bin/index.sh
 ###### You don't have to be an experienced programmer to add aliases or create functions you find useful.
 
 #### Quick contribution guide
-- New aliases and small functions should be appended to ```bin/extra.sh```
-- After adding new aliases or functions, don't forget to update:
-  - README
-  - functions __all_commands_resume and __updated_commands_resume in ```bin/resume.sh```
-- Backward compatibility is a must
+- After adding new aliases or functions, don't forget to update ```README``` and ```bin/resume.sh```
 - [Quick Git Flow explanation](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f)
+- Backward compatibility is a must
