@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function __get_repo_url {
-	echo "https://github.com/LucaDillenburg/Shell-Navigation-Boost"
+	echo "https://github.com/LucaDillenburg/Shell-Boost"
 }
 
 function __echo_repo_link {
