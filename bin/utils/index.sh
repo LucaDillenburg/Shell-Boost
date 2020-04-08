@@ -10,7 +10,7 @@ fi
 cd $initial_directory
 
 function __get_data_folder {
-	echo "$HOME/.sh_boost_boost_data"
+	echo "$HOME/.sh_boost_data"
 }
 
 if ! [[ -d $(__get_data_folder) ]]; then
