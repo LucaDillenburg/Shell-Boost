@@ -117,6 +117,7 @@ if [[ $installed_in_default_shell == true ]]; then
 
 	echo " "
 	__ask_show_all_commands
+	echo " "
 
 	echo $(__bold "Please open a new terminal to access the new commands.")
 else
