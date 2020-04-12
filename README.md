@@ -73,8 +73,8 @@ source $SH_BOOST_HOME/bin/index.sh
 # <a name="contributions"></a>Contributions are very welcome! 😄
 ###### You don't have to be an experienced programmer to add aliases or create functions you find useful.
 
-### Quick contribution guide 
+## Quick contribution guide 
 - **Choosing a task:** visit [Issues Page](https://github.com/LucaDillenburg/Shell-Boost/issues) and assign yourself to one of the issues. Note that tasks market as ```good first issue``` are very good for beginners.
 - **Don't forget to:** update ```README``` and ```bin/resume.sh``` after creating new aliases or functions;
-- [Git Flow](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f);
+- [Quick Git Flow Explanation](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f);
 - For more detaills visit [CONTRIBUTING.md](CONTRIBUTING.md).
