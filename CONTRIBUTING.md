@@ -1,10 +1,10 @@
-# Contributing to Shell-Boost
+# Contributing to Shell-Navigation-Boost
 
 :thumbsup::tada: First off, thanks for taking the time to contribute! :tada::thumbsup:
 
 ## Getting Started
 
-Shell-Boost's [open issues are here](https://github.com/LucaDillenburg/Shell-Boost/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or documentation that looks outdated. 
+Shell-Boost's [open issues are here](https://github.com/LucaDillenburg/Shell-Navigation-Boost/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or documentation that looks outdated. 
 
 For some tips on contributing to open source, [click here](https://github.com/firstcontributions/first-contributions).
 
@@ -15,6 +15,15 @@ We welcome contributions from everyone.
 Contributions should be made in the form of GitHub pull requests. Each pull request will
 be reviewed by a core contributor (someone with permission to land patches) and either landed in the
 main tree or given feedback for changes that would be required.
+
+## Choosing a task
+
+1. Visit Issues Page
+2. Consider your time availability and the issue complexity to choose an issue.
+
+    *Note that some issues are market as **```good first issue```**, these are consider easier.*
+ 
+3. Assign yourself the chosen issue.
 
 ## Pull Request Checklist
 
@@ -37,7 +46,7 @@ main tree or given feedback for changes that would be required.
   it, you can @-reply a reviewer asking for a review in the pull request or a
   comment.
 
-## Conduct
+## Conduct and more
 
 We follow the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html).
 
