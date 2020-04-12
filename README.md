@@ -46,7 +46,7 @@ After installation, you will be prompt to create custom cd aliases. Just copy th
 
 # 💻 <a name="installation"></a>Installation
 - For bash (default shell) and zsh
-```sh
+```sh There are tasks that even  (if you are a beginner you can )
 cd $HOME
 git clone https://github.com/LucaDillenburg/Shell-Boost.git ".shell-boost"
 cd .shell-boost
@@ -67,13 +67,14 @@ source $SH_BOOST_HOME/bin/index.sh
 
 - **How can I stay always with the latest stable version installed?**
 
-  You don't have to worry about that. ShellNavigationBoost will update automatically for you whenever there is a new stable version.
+  You don't have to worry about that. Shell-Boost will update automatically for you whenever a new stable version is available.
 <br/><br/>
 
 # <a name="contributions"></a>Contributions are very welcome! 😄
 ###### You don't have to be an experienced programmer to add aliases or create functions you find useful.
 
-#### Quick contribution guide
-- After adding new aliases or functions, don't forget to update ```README``` and ```bin/resume.sh```
-- [Quick Git Flow explanation](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f)
-- Backward compatibility is a must
+### Quick contribution guide 
+- **Choosing a task:** visit [Issues Page](https://github.com/LucaDillenburg/Shell-Boost/issues) and assign yourself to one of the issues. Note that tasks market as ```good first issue``` are very good for beginners.
+- **Don't forget to:** update ```README``` and ```bin/resume.sh``` after creating new aliases or functions;
+- [Git Flow](https://medium.com/@muneebsajjad/git-flow-explained-quick-and-simple-7a753313572f);
+- For more detaills visit [CONTRIBUTING.md](CONTRIBUTING.md).
