@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source $SH_NAV_HOME/bin/utils/index.sh
-source $SH_NAV_HOME/bin/commands/index.sh
-source $SH_NAV_HOME/bin/default_aliases.sh
-source $SH_NAV_HOME/bin/resume.sh
+source $SH_BOOST_HOME/bin/utils/index.sh
+source $SH_BOOST_HOME/bin/commands/index.sh
+source $SH_BOOST_HOME/bin/default_aliases.sh
+source $SH_BOOST_HOME/bin/resume.sh
 
 __git_pull_if_needed
