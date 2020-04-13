@@ -1,10 +1,10 @@
-# Contributing to Shell-Navigation-Boost
+# Contributing to Shell-Boost
 
 :thumbsup::tada: First off, thanks for taking the time to contribute! :tada::thumbsup:
 
 ## Getting Started
 
-Shell-Boost's [open issues are here](https://github.com/LucaDillenburg/Shell-Navigation-Boost/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or documentation that looks outdated. 
+Shell-Boost's [open issues are here](https://github.com/LucaDillenburg/Shell-Boost/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or documentation that looks outdated. 
 
 For some tips on contributing to open source, [click here](https://github.com/firstcontributions/first-contributions).
 

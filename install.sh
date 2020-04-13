@@ -51,7 +51,7 @@ function __install_to_shell {
 	shell_file=$1
 
 	line1=" "
-	line2="# ShellNavigationBoost installation (do not delete the following lines)"
+	line2="# Shell-Boost installation (do not delete the following lines)"
 	line3="SH_BOOST_HOME=$SH_BOOST_HOME"
 	line4="source \"\$SH_BOOST_HOME/bin/index.sh\""
 	line5=" "
